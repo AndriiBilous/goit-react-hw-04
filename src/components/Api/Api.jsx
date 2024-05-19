@@ -8,7 +8,7 @@ export const fetchPictureFromGallery = async (topic, currentPage) => {
       client_id: clientId,
       query: topic,
       page: currentPage,
-      per_page: 5,
+      per_page: 4,
     },
   });
   return response.data.results;

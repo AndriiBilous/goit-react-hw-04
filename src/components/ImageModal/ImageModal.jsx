@@ -1,4 +1,5 @@
 import Modal from 'react-modal';
+import css from './ImageModal.module.css';
 const customStyles = {
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -17,15 +18,28 @@ const customStyles = {
   },
 };
 Modal.setAppElement('#root');
-const ImageModal = ({ isOpen, onClose, url }) => {
+const ImageModal = ({
+  modalIsOpen,
+  closeModal,
+  item: {
+    alt_description,
+    likes,
+    urls: { regular },
+  },
+}) => {
   return (
     <Modal
-      modalOpen={isOpen}
-      onRequestClose={onClose}
+      closeTimeoutMS={300}
+      isOpen={modalIsOpen}
+      onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Image Modal"
     >
-      <img src={url} alt={{}} />
+      <img src={regular} alt={alt_description} />
+      <div className={css['container-text']}>
+        <p className={css.text}>Description: {alt_description}</p>
+        <p className={css.text}>Likes: {likes}</p>
+      </div>
     </Modal>
   );
 };

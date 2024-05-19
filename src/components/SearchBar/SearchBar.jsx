@@ -1,5 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-
+import css from './SearchBar.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 
 const notify = () => toast.error('Before submit fill up the field, please.');
@@ -18,9 +18,12 @@ function SearchBar({ onSearch }) {
           actions.resetForm();
         }}
       >
-        <Form>
-          <label name="search">Type text</label>
+        <Form className={css.container}>
+          <label className={css.label} name="search">
+            Type text
+          </label>
           <Field
+            className={css.input}
             type="text"
             name="search"
             autoComplete="off"
@@ -28,7 +31,9 @@ function SearchBar({ onSearch }) {
             placeholder="Search images and photos"
           />
           <ErrorMessage name="search" component="span" />
-          <button type="submit">Search</button>
+          <button className={css.btn} type="submit">
+            Search
+          </button>
           <Toaster position="top-center" reverseOrder={false} />
         </Form>
       </Formik>

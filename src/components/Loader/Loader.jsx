@@ -1,4 +1,5 @@
 import { Watch } from 'react-loader-spinner';
+
 function Loader() {
   return (
     <Watch
@@ -9,7 +10,7 @@ function Loader() {
       color="#4fa94d"
       ariaLabel="watch-loading"
       wrapperStyle={{}}
-      wrapperClass=""
+      wrapperClass={''}
     />
   );
 }

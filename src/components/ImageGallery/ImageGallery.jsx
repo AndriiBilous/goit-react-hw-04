@@ -1,12 +1,18 @@
 import ImageCard from '../ImageCard/ImageCard';
-function ImageGallery({ modalOpen, data }) {
+import css from './ImageGallery.module.css';
+function ImageGallery({ openModal, data, afterOpenModal }) {
   return (
-    <ul>
+    <ul className={css.container}>
       {data.map(item => {
+        const handlerOnClick = () => {
+          openModal();
+          afterOpenModal(item);
+        };
         return (
-          <li key={item.id}>
+          <li className={css.item} key={item.id} onClick={handlerOnClick}>
             <ImageCard
-              onClick={modalOpen}
+              afterOpenModal={afterOpenModal}
+              openModal={openModal}
               url={item.urls}
               alt={item.alt_description}
             />

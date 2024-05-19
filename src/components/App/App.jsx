@@ -13,15 +13,15 @@ function App() {
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
-  //   const [totalFetch, setTotalFetch] = useState(0);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [imageRegular, setImageUrl] = useState('');
 
-  function openModal(imageUrl) {
-    setImageUrl(imageUrl);
+  function openModal() {
     setIsOpen(true);
   }
-
+  function afterOpenModal(item) {
+    setImageUrl(item);
+  }
   function closeModal() {
     setIsOpen(false);
   }
@@ -45,7 +45,6 @@ function App() {
     }
     fetchPicture();
   }, [page, searchQuery]);
-  console.log(pictures);
 
   const handlerSearch = async topic => {
     setSearchQuery(topic);
@@ -63,19 +62,21 @@ function App() {
       {error && <ErrorMessage />}
       {pictures.length > 0 && (
         <ImageGallery
-          modalOpen={openModal}
-          closedModal={closeModal}
+          openModal={openModal}
           data={pictures}
+          afterOpenModal={afterOpenModal}
         />
       )}
       {pictures.length > 0 && !loading && (
         <LoadMoreBtn onClick={handlerLoadMore} />
       )}
-      <ImageModal
-        onClose={closeModal}
-        isOpen={modalIsOpen}
-        url={imageRegular}
-      />
+      {modalIsOpen && (
+        <ImageModal
+          closeModal={closeModal}
+          modalIsOpen={modalIsOpen}
+          item={imageRegular}
+        />
+      )}
     </>
   );
 }

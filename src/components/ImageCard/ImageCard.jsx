@@ -1,10 +1,8 @@
-function ImageCard({ url: { small, regular }, alt, onClick }) {
-  const handlerClick = () => {
-    onClick(regular);
-  };
+import css from './ImageCard.module.css';
+function ImageCard({ url: { small }, alt }) {
   return (
-    <div onClick={handlerClick}>
-      <img src={small} alt={alt} />
+    <div>
+      <img className={css.img} src={small} alt={alt} width="300" height="200" />
     </div>
   );
 }
