@@ -4,17 +4,12 @@ function ImageGallery({ openModal, data, afterOpenModal }) {
   return (
     <ul className={css.container}>
       {data.map(item => {
-        const handlerOnClick = () => {
-          openModal();
-          afterOpenModal(item);
-        };
         return (
-          <li className={css.item} key={item.id} onClick={handlerOnClick}>
+          <li className={css.item} key={item.id}>
             <ImageCard
               afterOpenModal={afterOpenModal}
               openModal={openModal}
-              url={item.urls}
-              alt={item.alt_description}
+              item={item}
             />
           </li>
         );

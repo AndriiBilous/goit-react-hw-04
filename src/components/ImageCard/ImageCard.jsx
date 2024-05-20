@@ -1,9 +1,20 @@
 import css from './ImageCard.module.css';
-function ImageCard({ url: { small }, alt }) {
+function ImageCard({ item, openModal, afterOpenModal }) {
+  const handlerOnClick = () => {
+    openModal();
+    afterOpenModal(item);
+  };
   return (
-    <div>
-      <img className={css.img} src={small} alt={alt} width="300" height="200" />
-    </div>
+    <>
+      <img
+        onClick={handlerOnClick}
+        className={css.img}
+        src={item.urls.small}
+        alt={item.alt_description}
+        width="300"
+        height="200"
+      />
+    </>
   );
 }
 export default ImageCard;
