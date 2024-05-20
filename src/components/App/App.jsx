@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { animateScroll as scroll } from 'react-scroll';
 
 import ImageGallery from '../ImageGallery/ImageGallery';
 import SearchBar from '../SearchBar/SearchBar';
@@ -15,7 +16,9 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
   const [imageRegular, setImageUrl] = useState('');
-
+  const scrollToBottom = () => {
+    scroll.scrollToBottom();
+  };
   function openModal() {
     setIsOpen(true);
   }
@@ -53,6 +56,7 @@ function App() {
   };
   const handlerLoadMore = async () => {
     setPage(page + 1);
+    scrollToBottom();
   };
 
   return (
